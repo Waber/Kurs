@@ -6,12 +6,14 @@ import java.util.Map;
 
 public class Basket  {
 
-    Map<Item, Integer> orderedItems = new LinkedHashMap<>();
+   final Map<Item, Integer> orderedItems = new LinkedHashMap<>();
 
     public void add(Item item, int quantity)
     {
         if(quantity <= 0)
+        {
             throw new IllegalArgumentException("Ilość produktu nie może być mniejsza niż 1");
+        }
 
         if(orderedItems.containsKey(item))
         {
@@ -19,7 +21,9 @@ public class Basket  {
             orderedItems.put(item,quantity);
         }
         else
-            orderedItems.put(item,quantity);
+            {
+            orderedItems.put(item, quantity);
+            }
     }
 
     public void add(Item item)
@@ -29,20 +33,25 @@ public class Basket  {
 
     public void remove(Item item, int quantity)
     {
-        if(quantity == 0)
+        if(quantity == 0) {
             throw new IllegalArgumentException("Nie możesz usunąć 0 przedmiotów");
+        }
 
-        if(!orderedItems.containsKey(item))
+        if(!orderedItems.containsKey(item)) {
             throw new IllegalArgumentException("Nie masz takich produktów w koszyku");
+        }
         quantity = orderedItems.get(item) - quantity;
 
 
-        if(quantity < 0)
+        if(quantity < 0) {
             throw new IllegalArgumentException("Chcesz usunąć ilość większą niż masz w koszyku");
-        else if(quantity == 0)
+        }
+        else if(quantity == 0) {
             orderedItems.remove(item);
-        else
-            orderedItems.put(item,quantity);
+        }
+        else {
+            orderedItems.put(item, quantity);
+        }
     }
 
     public void remove(Item item)

@@ -1,9 +1,11 @@
 package pl.kurs.Testy;
 
+import java.util.Objects;
+
 public class Item {
 
     private double price;
-    private String name;
+    private final String name;
 
     public Item(String name, double price)
     {
@@ -19,5 +21,31 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == null)
+        {
+            return false;
+        }
+
+        if(!(obj instanceof Item))
+        {
+            return false;
+        }
+        Item otherItem = (Item) obj;
+        if (Double.compare(price,otherItem.price) != 0 ) {
+            return false;
+        }
+        else {
+            return name.equals(otherItem.name);
+        }
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(name);
     }
 }

@@ -8,11 +8,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemTest {
 
     @Test
-    public void shouldSayThatParameterEquals()
+    public void itemsWithSameNameAndPriceShouldBeEqual()
     {
-        Item item = new Item("Coś",4.25);
-        Assert.assertEquals("Coś",item.getName());
-        Assert.assertEquals(4.25,item.getPrice(), 1e-8);
+        Assert.assertEquals(new Item("Thing", 5.50), new Item("Thing", 5.50));
+    }
+
+    @Test
+    public void itemsWithSameNameDifferentPriceShouldntBeEqual()
+    {
+        Assert.assertNotEquals(new Item("Thing", 5.50), new Item("Thing", 5.90));
+    }
+
+    @Test
+    public void itemsWithDifferentNameSamePriceShouldntBeEqual()
+    {
+        Assert.assertNotEquals(new Item("Thing", 5.50), new Item("Thing1", 5.50));
     }
 
 }

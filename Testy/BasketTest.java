@@ -3,6 +3,7 @@ package pl.kurs.Testy;
 import com.sun.org.apache.xpath.internal.operations.String;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -107,6 +108,7 @@ class BasketTest {
         basket.add(item,2);
         StringBuilder test = new StringBuilder();
         test.append("thing").append(item.getPrice()).append(2).append(2*item.getPrice());
+        test.append(System.lineSeparator());
         Assert.assertEquals(test.toString(),basket.toString());
     }
 
@@ -127,6 +129,19 @@ class BasketTest {
         test.append("thing1").append(20.0).append(1).append(20.0);
         test.append(System.lineSeparator());
         test.append("thing1").append(40.0).append(1).append(40.0);
+        test.append(System.lineSeparator());
+
+        Assert.assertEquals(test.toString(),basket.toString());
+    }
+
+    @Test
+    public void shouldIncreaseQuantityWhenAddingAgainTheSameThing()
+    {
+        basket.add(new Item("thing1",20));
+        basket.add(new Item("thing1",20));
+
+        StringBuilder test = new StringBuilder();
+        test.append("thing1").append(20.0).append(2).append(40.0);
         test.append(System.lineSeparator());
 
         Assert.assertEquals(test.toString(),basket.toString());
