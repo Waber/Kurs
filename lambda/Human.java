@@ -1,5 +1,6 @@
 package pl.kurs.lambda;
 
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -25,8 +26,10 @@ public class Human {
 
     public static void main(String[] args) {
 
-            Consumer<Human> humanSpl = Human::new;
-            humanSpl
+        BiFunction<Integer,String,Human> humanBiFunction = Human::new;
+        Human human = humanBiFunction.apply(22,"Zdzichu");
+        System.out.println(human.getAge());
+        System.out.println(human.getName());
 
     }
 
